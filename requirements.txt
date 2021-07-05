@@ -1,0 +1,5 @@
+Project Dependencies.
+Python Pillow library - pip install pillow
+Python requests library - For serving data in Flask App.
+Python docx library - pip install python-docx
+XpdfReader utility for conversion of pdf file to text - https://www.xpdfreader.com/
