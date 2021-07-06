@@ -2,17 +2,18 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
+
 from QuoteEngine.QuoteModel import QuoteModel
 
-class generate_meme: 
+
+class generate_meme:
     def __init__(self, output_path):
         self.output_path = output_path + ".png"
 
-
     def make_meme(self, img_path, text, author, width=500) -> str:
-        self.text = text 
-        self.author = author 
-        self.width = width 
+        self.text = text
+        self.author = author
+        self.width = width
 
         self.img = Image.open(img_path)
 
@@ -28,6 +29,3 @@ class generate_meme:
         self.img.save(self.output_path)
 
         return self.output_path
-
-
-

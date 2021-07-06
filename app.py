@@ -16,12 +16,14 @@ def setup():
 
     quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                    './_data/DogQuotes/DogQuotesDOCX.docx',
+                   # Been able to get everything working
+                   # but the PDF file so commented it out
                    # './_data/DogQuotes/DogQuotesPDF.pdf',
                    './_data/DogQuotes/DogQuotesCSV.csv']
     quotes = []
 
     for file in quote_files:
-        #ingestor_var = Ingestor.parse(file)
+        # ingestor_var = Ingestor.parse(file)
         ingestor_var = Ingestor.parse(file)
         print(ingestor_var)
         print("--------")
@@ -55,7 +57,7 @@ def meme_rand():
         "body": "default quote",
         "author": "Frame",
     }
-    #quote = random.choice(quotes) if len(quotes) != 0 else default_quote
+    # quote = random.choice(quotes) if len(quotes) != 0 else default_quote
 
     if len(quotes) != 0:
         quote = random.choices(quotes)

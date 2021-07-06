@@ -3,11 +3,10 @@ import random
 
 from MemeEngine.Meme_Engine import generate_meme
 from Ingestor import Ingestor
-import argparse 
+import argparse
 
 from QuoteEngine.QuoteModel import QuoteModel
 from QuoteEngine.Ingestor_Interface import IngestorInterface
-
 
 
 def process_args(path=None, body=None, author=None):
@@ -29,7 +28,9 @@ def process_args(path=None, body=None, author=None):
     if body is None:
         quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                        './_data/DogQuotes/DogQuotesDOCX.docx',
-                       #'./_data/DogQuotes/DogQuotesPDF.pdf',
+                       # Been able to get everything working
+                       # but the PDF file so commented it out
+                       # './_data/DogQuotes/DogQuotesPDF.pdf',
                        './_data/DogQuotes/DogQuotesCSV.csv']
         quotes = []
         for f in quote_files:

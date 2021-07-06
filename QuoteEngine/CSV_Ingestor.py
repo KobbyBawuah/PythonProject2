@@ -4,6 +4,7 @@ import pandas
 from .QuoteModel import QuoteModel
 from .Ingestor_Interface import IngestorInterface
 
+
 class CSVIngestor(IngestorInterface):
     allowed_extensions = ['csv']
 
@@ -19,5 +20,5 @@ class CSVIngestor(IngestorInterface):
                 new_author = QuoteModel(row['body'], row['author'])
                 author_csv.append(new_author)
         except Exception as e:
-            raise Exception("CSV parsing issue occured.")    
+            raise Exception("CSV parsing issue occured.")
         return author_csv

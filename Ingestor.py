@@ -8,16 +8,12 @@ from QuoteEngine.Ingestor_Interface import IngestorInterface
 
 from typing import List
 
+
 class Ingestor(IngestorInterface):
     ingestors = [CSVIngestor, PDFIngestor, DocxIngestor, Text_Ingestor]
 
     @classmethod
-    def parse(cls, path:str) -> List[QuoteModel]:
+    def parse(cls, path: str) -> List[QuoteModel]:
         for ingestor in cls.ingestors:
-            #print(path)
-            #print(ingestor)
             if ingestor.can_ingest(path):
-                #print("yes")
-                #print(ingestor)
-                #print(path)
                 return ingestor.parse(path)
