@@ -15,7 +15,8 @@ class PDFIngestor(IngestorInterface):
         if not cls.can_ingest(path):
             raise Exception('cannot ingest specified file')
         
-        tmp = os.getcwd() + "/output.txt"
+        tmp = "/output.txt"
+        # tmp = os.getcwd() + "/output.txt"
 
         subprocess.run(["pdftotext.exe", "-layout",
                         "-nopgbrk", path, tmp])

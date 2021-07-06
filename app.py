@@ -8,7 +8,7 @@ from Ingestor import Ingestor
 
 app = Flask(__name__)
 
-meme = generate_meme('./static')
+meme = generate_meme('./static/dog')
 
 
 def setup():
@@ -16,13 +16,16 @@ def setup():
 
     quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                    './_data/DogQuotes/DogQuotesDOCX.docx',
-                   './_data/DogQuotes/DogQuotesPDF.pdf',
+                   # './_data/DogQuotes/DogQuotesPDF.pdf',
                    './_data/DogQuotes/DogQuotesCSV.csv']
     quotes = []
-    
+
     for file in quote_files:
         #ingestor_var = Ingestor.parse(file)
         ingestor_var = Ingestor.parse(file)
+        print(ingestor_var)
+        print("--------")
+
         # if ingestor_var is NOT None or False then extend
         if ingestor_var:
             quotes.extend(ingestor_var)
@@ -37,7 +40,7 @@ def setup():
     imgs = [f'./_data/photos/dog/{image}' for image in os.listdir(images_path)]
 
     print("images ---> ", imgs)
-
+    print("quotes ---> ", quotes)
     return quotes, imgs
 
 
@@ -55,19 +58,22 @@ def meme_rand():
     img = random.choice(imgs)
     default_quote = {
         "body": "default quote",
-        "author": "Kobby",
+        "author": "Frame",
     }
     #quote = random.choice(quotes) if len(quotes) != 0 else default_quote
 
     if len(quotes) != 0:
         quote = random.choices(quotes)
-        path = meme.make_make(img, quote.body, quote.author)
+        print(quote)
+        print(type(quote))
+        path = meme.make_meme(img, quote[0].body, quote[0].author)
     else:
-        path = meme.make_meme(img, default_quote["body"], default_quote["author"])
+        path = meme.make_meme(
+            img, default_quote["body"], default_quote["author"])
 
     # path = meme.make_meme(img, quote["body"], quote["author"])
     print('image here: ----> ', img)
-    return render_template('meme.html', path=img)
+    return render_template('meme.html', path=path)
 
 
 @app.route('/create', methods=['GET'])
@@ -84,14 +90,14 @@ def meme_post():
     body = request.form['body']
     author = request.form['author']
 
-    r = requests.get(image_url, allow_redirects = True)
-    tmp = f'./tmp/{random.randint(0, 100000000)}.png'
-    img = open(tmp, 'wb').write(r.content)
-    path = meme.make_meme(tmp,body,author)
+    r = requests.get(image_url, allow_redirects=True)
+    tmp = f'./static/{random.randint(0, 100000000)}.png'
+    open(tmp, 'wb').write(r.content)
+    path = meme.make_meme(tmp, body, author)
     os.remove(tmp)
 
     return render_template('meme.html', path=path)
 
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True)
