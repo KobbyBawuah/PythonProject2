@@ -36,7 +36,6 @@ def setup():
 
     final_path = os.path.join('.', '_data', 'photos', 'dog')
 
-    #imgs = [f'{os.path.join(final_path, image)}'  for image in os.listdir(images_path)]
     imgs = [f'./_data/photos/dog/{image}' for image in os.listdir(images_path)]
 
     print("images ---> ", imgs)
@@ -51,10 +50,6 @@ quotes, imgs = setup()
 def meme_rand():
     """ Generate a random meme """
 
-    # @TODO:
-    # Use the random python standard library class to:
-    # 1. select a random image from imgs array
-    # 2. select a random quote from the quotes array
     img = random.choice(imgs)
     default_quote = {
         "body": "default quote",
